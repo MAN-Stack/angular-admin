@@ -1,0 +1,22 @@
+pipeline {
+  agent any
+  parameters {
+  
+  }
+  options {
+ 
+  }
+  stages {
+    stage('Gradle Build') {
+    
+    }
+    stage('Archive artifacts') {
+      steps {
+       
+      }
+    }
+    stage('Prepare docker image') {
+
+    }
+  }
+}
