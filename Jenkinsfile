@@ -1,6 +1,6 @@
 pipeline {
   agent {
-    docker { image 'node:latest' }
+    docker { image 'node:10' }
   }
   stages {
     stage('Install') {
