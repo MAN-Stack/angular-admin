@@ -1,0 +1,29 @@
+plugins {
+  id "com.github.node-gradle.node" version "2.2.4"
+  id "docker.plugin" version "1.0.31"
+}
+
+node {
+  version = '10.9.0'
+  npmVersion = '6.2.0'
+  download = true
+}
+
+task rebuildSass(type: NpmTask) {
+  args = ['rebuild', 'node-sass']
+}
+
+task ngBuild(type: NpmTask) {
+  dependsOn npmInstall, rebuildSass
+  args = ['run', "build-master"]
+  inputs.files('package.json', 'package-lock.json', 'angular.json', 'tsconfig.json', 'tsconfig.app.json')
+  inputs.dir('src')
+  inputs.dir(fileTree("node_modules").exclude(".cache"))
+  outputs.dir('dist')
+}
+
+task clean {
+  delete "${projectDir}/build"
+  delete "${projectDir}/dist"
+  delete "${projectDir}/node_modules"
+}
