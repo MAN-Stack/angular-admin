@@ -3,10 +3,6 @@ pipeline {
   parameters {
     choice(name: 'CONFIG_BRANCH', description: 'Name of config GIT branch')
   }
-  options {
-    copyArtifactPermission('build-docker-image')
-    buildDiscarder(logRotator(numToKeepStr: '4'))
-  }
   stages {
     stage('Gradle Build') {
       steps {
